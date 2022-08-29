@@ -1,0 +1,33 @@
+_id: req_88adffb4ebdb4e678826e12d3d7f0047
+type: Request
+parentId: wrk_501887b9e36942cfa5e4b664a001184d
+modified: 1661815605719
+created: 1661802765918
+url: "{{ _.baseURL }}/withdraw"
+name: WithDraw
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"amount": 600
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_9376f4f2a6b6408fbd1388a26faf8277
+  - id: pair_a1ffc1a4199e4967a6470ded1fa70405
+    name: cpf
+    value: "1239457867"
+    description: ""
+authentication: {}
+metaSortKey: -1661802765918
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

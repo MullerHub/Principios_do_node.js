@@ -1,0 +1,25 @@
+_id: req_742472151041470a84624f37c41a4549
+type: Request
+parentId: wrk_501887b9e36942cfa5e4b664a001184d
+modified: 1661815265747
+created: 1661815233987
+url: "{{ _.baseURL }}/account"
+name: Delete Account
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers:
+  - id: pair_258763e52fbf40d8856e13e7587c6649
+    name: cpf
+    value: "1239457867"
+    description: ""
+authentication: {}
+metaSortKey: -1661815233987
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

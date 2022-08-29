@@ -1,0 +1,25 @@
+_id: req_c2fd4f91f8ac4ffe85e0c627dbb3f3ee
+type: Request
+parentId: wrk_501887b9e36942cfa5e4b664a001184d
+modified: 1661815521100
+created: 1661815478973
+url: "{{ _.baseURL }}/balance"
+name: Balance
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_33d1bebbffd94a159f9807cd86ce1897
+    name: cpf
+    value: "1239457867"
+    description: ""
+authentication: {}
+metaSortKey: -1661815478973
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
