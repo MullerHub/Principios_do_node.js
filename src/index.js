@@ -19,6 +19,17 @@ function verificaCPF(request, response, next) {
   return next()
 }
 
+function getBalance(statement) {
+  const balance = statement.reduce((acc, operation) => {
+    if (operation.type === 'credit') {
+      return acc + operation.amount
+    } else {
+      return acc - operation.amount
+    }
+  }, 0)
+  return balance
+}
+
 app.use(express.json())
 
 app.post('/account', (request, response) => {
@@ -40,26 +51,79 @@ app.post('/account', (request, response) => {
   return response.status(201).send()
 })
 
-// app.use(verificaCPF) se utilizar o app.use, tudo que vier abaixo passará por este middware, nesta aplicação irei utilizar o verificaCPF dentro de cada chamada necessaria
-
+/* app.use(verificaCPF) se utilizar o app.use, tudo que vier abaixo passará por este middware, nesta aplicação irei utilizar o verificaCPF dentro de cada chamada necessaria */
 app.get('/statement', verificaCPF, (request, response) => {
-  const {
-     customer } = request;
+  const { customer } = request
+  const { date } = request.query
+
+  const dateFormat = new Date(date + ' 00:00')
+
   return response.json(customer.statement)
 })
 
-
 app.post('/deposit', verificaCPF, (request, response) => {
-  const { description, amount } = request.body;
+  const { description, amount } = request.body
+
+  const { customer } = request
+
+  const statementOperation = {
+    description,
+    amount,
+    created_at: new Date(),
+    type: 'credit'
+  }
+
+  customer.statement.push(statementOperation)
+
+  return response.status(201).send()
 })
 
-/*
-app.delete('/account/:id', (request, response) => {
+app.post('/withdraw', verificaCPF, (request, response) => {
+  const { amount } = request.body
+  const { customer } = request
 
-}) 
+  const balance = getBalance(customer.statement)
 
-/*  Rota para rodar a aplicação, colocar no browser: localhost: "numero do app.listen abaixo"  /  "rota do site, que nessa aplicação seria /account"
-Ficaria no browser este link: http://localhost:3333/account
-*/
+  if (balance < amount) {
+    return response.status(400).json({ error: 'Saldo insuficiente' })
+  }
+
+  const statementOperation = {
+    amount,
+    created_at: new Date(),
+    type: 'debit'
+  }
+
+  customer.statement.push(statementOperation)
+
+  return response.status(201).send()
+})
+
+app.get('/statement/date', verificaCPF, (request, response) => {
+  const { customer } = request
+  const { date } = request.query
+
+  const dateFormat = new Date(date + ' 00:00')
+
+  const statement = customer.statement.filter(
+    statement =>
+      statement.created_at.toDateString() ===
+      new Date(dateFormat).toDateString()
+  )
+
+  return response.json(statement)
+})
+
+app.put('/account', verificaCPF, (request, response) => {
+  const { name } = request.body
+  const { customer } = request
+
+  customer.name = name
+
+  return response.status(201).send()
+})
 
 app.listen(3333)
+
+/*  Rota para rodar a aplicação, colocar no browser: localhost: "numero do app.listen abaixo"  /  "rota do site, que nessa aplicação seria /account" 
+Ficaria no browser este link: http://localhost:3333/account */
