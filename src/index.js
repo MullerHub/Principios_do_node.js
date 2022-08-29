@@ -123,6 +123,29 @@ app.put('/account', verificaCPF, (request, response) => {
   return response.status(201).send()
 })
 
+app.get('/account', verificaCPF, (request, response) => {
+  const { customer } = request
+
+  return response.json(customer)
+})
+
+app.delete('/account', verificaCPF, (request, response) => {
+  const { customer } = request
+
+  // splice, função javascript de remoção
+  customers.splice(customer, 1);
+
+  return response.status(200).json()
+})
+
+app.get('/balance', verificaCPF, (request, response) => {
+  const { customer } = request
+
+  const balance = getBalance(customer.statement);
+
+  return response.json(balance)
+})
+
 app.listen(3333)
 
 /*  Rota para rodar a aplicação, colocar no browser: localhost: "numero do app.listen abaixo"  /  "rota do site, que nessa aplicação seria /account" 
