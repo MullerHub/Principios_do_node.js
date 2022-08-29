@@ -1,0 +1,34 @@
+_id: req_cd1c23bd0e3748539ef05893d7eda5db
+type: Request
+parentId: wrk_501887b9e36942cfa5e4b664a001184d
+modified: 1661815582972
+created: 1661810496329
+url: "{{ _.baseURL }}/account"
+name: Update account
+description: ""
+method: PUT
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"name": "murilo muller"
+    	
+    }
+parameters: []
+headers:
+  - id: pair_fe40cb4c5ecc4b6aaae87f4a3ffcbabc
+    name: cpf
+    value: "1239457867"
+    description: ""
+  - name: Content-Type
+    value: application/json
+    id: pair_a90b286a5efd429bbd8e88ea7681602e
+authentication: {}
+metaSortKey: -1661810496329
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

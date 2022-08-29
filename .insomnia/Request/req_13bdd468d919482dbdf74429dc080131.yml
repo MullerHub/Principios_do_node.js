@@ -1,0 +1,34 @@
+_id: req_13bdd468d919482dbdf74429dc080131
+type: Request
+parentId: wrk_501887b9e36942cfa5e4b664a001184d
+modified: 1661815596746
+created: 1661800816939
+url: "{{ _.baseURL }}/deposit"
+name: Deposit
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"description": "Transferencia da maria",
+    	"amount": 600.00
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_70ad4b98852a45e0b01ec1275829ad61
+  - id: pair_47a51c188c274ce68f9fc9d0ffa459e9
+    name: cpf
+    value: "1239457867"
+    description: ""
+authentication: {}
+metaSortKey: -1661800816939
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
