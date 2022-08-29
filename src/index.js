@@ -1,36 +1,60 @@
 const express = require('express')
+const { v4: uuidv4 } = require('uuid')
 
 const app = express()
+
+const customers = []
+
 app.use(express.json())
 
-app.get('/curso', (request, response) => {
-  return response.json(['curso 1, curso 2, curso 3'])
+/*  cpf - string
+    name - string
+    id - uuid  "yarn add uuid"
+    statement ["array"]       */
+
+app.post('/account', (request, response) => {
+  const { cpf, name } = request.body
+
+  const customerExiste = customers.some(customer => customer.cpf === cpf)
+
+  if (customerExiste) {
+    return response.status(400).json({ error: 'Customer já existe!' })
+  }
+
+  customers.push({
+    cpf,
+    name,
+    id: uuidv4(),
+    statement: []
+  })
+  
+  return response.status(201).send()
 })
 
-// referencia de uso do Body Params
-app.post('/curso', (request, response) => {
-  const body = request.body
-  console.log(body)
-  return response.json(['curso 11, curso 22, curso 33'])
+app.get('/statement:cpf', (request, response) => {
+  const { cpf } = request.params
+  
 })
+
+
+/* 
 
 // Referencia do uso de Query Params
-app.put('/curso/:id', (request, response) => {
+app.put('/account/:id', (request, response) => {
   const params = request.params
-  console.log(params)
-  return response.json(['curso 111, curso 222, curso 333'])
+  
 })
 
-app.patch('/curso/:id', (request, response) => {
-  return response.json(['curso 111, curso 222 mudou, curso 333'])
+app.patch('/account/:id', (request, response) => {
+
 })
 
-app.delete('/curso/:id', (request, response) => {
-  return response.json(['curso 111, curso 222 mudou,'])
-})
+app.delete('/account/:id', (request, response) => {
 
-/*  Rota para rodar a aplicação, colocar no browser: localhost: "numero do app.listen abaixo"  /  "rota do site, que nessa aplicação seria /curso"
-Ficaria no browser este link: http://localhost:3333/curso
+}) */
+
+/*  Rota para rodar a aplicação, colocar no browser: localhost: "numero do app.listen abaixo"  /  "rota do site, que nessa aplicação seria /account"
+Ficaria no browser este link: http://localhost:3333/account
 */
 
 app.listen(3333)
