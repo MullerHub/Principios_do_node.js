@@ -1,4 +1,5 @@
 import express from "express";
+import { categoriesRoutes } from "./routes/categories.routes";
 
 const app = express();
 
@@ -8,10 +9,6 @@ app.get("/", (request, response) => {
   return response.json({ message: "Olá Mundo!" })
 })
 
-app.post("/curso", (request, response) => {
-  console.log(request.body)
-  const { name } = request.body;
-  return response.json({ name })
-})
+app.use("/categories", categoriesRoutes)
 
 app.listen(3030, () => console.log("Não sei como, mas o codigo tá funcionando!"))
