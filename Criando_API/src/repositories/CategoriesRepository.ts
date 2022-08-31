@@ -7,7 +7,7 @@ class CategoriesRepository {
     this.categories = [];
   }
 
-  create({data, description}: Category) {
+  create({name, description}: Category) {
     const category = new Category();
 
     Object.assign(category, {
