@@ -22,7 +22,10 @@ class CategoriesRepository {
       created_at: new Date()
     })
     this.categories.push(category)
+  }
 
+  list(): Category[] {
+    return this.categories;
   }
 }
 
