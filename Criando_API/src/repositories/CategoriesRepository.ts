@@ -1,5 +1,11 @@
-import { Category } from "../model/Category"
+import { Category } from "../model/Category";
 
+interface ICreateCategoryDTO {
+  name: string;
+  description: string;
+}
+
+/*  DTO => Data Transfer object / objeto de transferencia de dados */
 class CategoriesRepository {
   private categories: Category[]
 
@@ -7,7 +13,7 @@ class CategoriesRepository {
     this.categories = [];
   }
 
-  create({name, description}: Category) {
+  create({name, description}: ICreateCategoryDTO): void {
     const category = new Category();
 
     Object.assign(category, {
