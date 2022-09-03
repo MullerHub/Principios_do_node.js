@@ -1,5 +1,5 @@
-import { Category } from "../model/Category";
-import { ICategoriesRepository, ICreateCategoryDTO } from './ICategoriesRepository'
+import { Category } from "../../model/Category";
+import { ICategoriesRepository, ICreateCategoryDTO } from '../ICategoriesRepository'
 
 
 /*  DTO => Data Transfer object / objeto de transferencia de dados */
@@ -36,6 +36,7 @@ class CategoriesRepository implements ICategoriesRepository {
 
   findByName(name: string): Category {
     const category = this.categories.find((category) => category.name === name);
+    
     return category;
   }
 }
