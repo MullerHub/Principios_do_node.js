@@ -3,7 +3,7 @@ import {parse} from 'csv-parse'
 import fs from 'fs';
 import Multer from 'multer'
 import {ICategoriesRepository} from '../../repositories/ICategoriesRepository'
-// import { parse } from 'path';
+// import { parse } from 'path';   precisei comentar pra funcionar o codigo
 
 interface IImportCategory {
   name: string;
@@ -23,7 +23,8 @@ class ImportCategoryUseCase {
       
       stream.pipe(parseFile)
       
-      parseFile.on("data", async (line) => {
+      parseFile
+      .on("data", async (line) => {
         const [name, description] = line 
         categories.push({
           name, 
@@ -31,6 +32,7 @@ class ImportCategoryUseCase {
         })
       }) 
       .on("end", () => {
+        fs.promises.unlink(file.path);
         resolve(categories);
       })
       .on("error", (err) => {
