@@ -1,8 +1,8 @@
 import express from "express";
 import { router } from "./routes";
 import swaggerUi from 'swagger-ui-express'
-import swaggerFile from './swagger.json'
-
+const swaggerFile = require('./swagger.json')  // pode dar erro, precisa de revisão aprofundada em importação .json no ts
+import "./database"
 
 const app = express();
 
@@ -12,4 +12,4 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use(router)
 
-app.listen(3030, () => console.log("Não sei como, mas o codigo tá funcionando!"))
+app.listen(3032, () => console.log("Não sei como, mas o codigo tá funcionando!"))
