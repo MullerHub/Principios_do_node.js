@@ -12,4 +12,4 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use(router)
 
-app.listen(3032, () => console.log("Não sei como, mas o codigo tá funcionando!"))
+app.listen(4022, () => console.log("Não sei como, mas o codigo tá funcionando!"))
